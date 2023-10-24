@@ -6,8 +6,6 @@ import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 
-import static java.util.Arrays.*;
-
 public class AviaSoulsTest {
     AviaSouls souls = new AviaSouls();
     Ticket ticket1 = new Ticket("Воронеж", "Москва", 5000, 14, 15);
@@ -38,15 +36,12 @@ public class AviaSoulsTest {
         Ticket[] expected = {ticket4, ticket5, ticket3, ticket2, ticket1};
         Arrays.sort(tickets);
 
-
         Assertions.assertArrayEquals(expected, tickets);
 
     }
 
     @Test
     public void ShouldSearchCompareTo() {
-        //Ticket[] tickets = {ticket1, ticket2, ticket3, ticket4, ticket5,ticket6,ticket7};
-
         Ticket[] expected = {ticket7, ticket6, ticket1};
         Ticket[] actual = souls.search("Воронеж", "Москва");
 
@@ -56,11 +51,26 @@ public class AviaSoulsTest {
 
     @Test
     public void ShouldSearchAndSortBy() {
-        //Ticket[] tickets = {ticket1, ticket2, ticket3, ticket4, ticket5,ticket6,ticket7};
-
         Ticket[] expected = {ticket7, ticket6, ticket1};
         Ticket[] actual = souls.search("Воронеж", "Москва");
 
+        Assertions.assertArrayEquals(expected, actual);
+
+    }
+
+    @Test
+    public void NoShouldSearch() {
+        Ticket[] expected = {};
+        Ticket[] actual = souls.search("Казань", "Мадрид");
+
+        Assertions.assertArrayEquals(expected, actual);
+
+    }
+
+    @Test
+    public void ShouldSearch1() {
+        Ticket[] expected = {ticket4};
+        Ticket[] actual = souls.search("Иркутск", "Улан-Удэ");
 
         Assertions.assertArrayEquals(expected, actual);
 
